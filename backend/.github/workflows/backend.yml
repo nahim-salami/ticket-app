@@ -1,0 +1,59 @@
+name: Laravel CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, bcmath, mysql
+        coverage: none
+
+    - name: Install Composer dependencies
+      run: |
+        cd backend
+        composer install --no-progress --no-suggest --prefer-dist
+
+    - name: Copy .env
+      run: cp backend/.env.example backend/.env
+
+    - name: Generate Laravel key
+      run: |
+        cd backend
+        php artisan key:generate
+
+    - name: Run Laravel migrations
+      run: |
+        cd backend
+        php artisan migrate --force
+
+    - name: Run Laravel tests
+      run: |
+        cd backend
+        php artisan test
