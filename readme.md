@@ -94,7 +94,7 @@ Pour toute question ou suggestion, vous pouvez me contacter à :
 ## Profil 🌟
 
 Retrouvez-moi sur :  
-**GitHub** : [MonProfilGitHub](https://github.com/nahim-salami/)  
-**LinkedIn** : [MonProfilLinkedIn](https://www.linkedin.com/in/nahimsalami/)
+**GitHub** : [Mon Profil GitHub](https://github.com/nahim-salami/)  
+**LinkedIn** : [Mon Profil LinkedIn](https://www.linkedin.com/in/nahimsalami/)
 
 Et souvenez-vous : coder, c'est un art. 🎨💻
