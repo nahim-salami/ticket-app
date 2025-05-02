@@ -23,6 +23,56 @@ ticket-app/
 
 Les modèles sont définis dans le dossier `backend/models`. Chaque modèle représente une entité de la base de données (par exemple, `Ticket`, `User`, etc.). Bref, c'est là que tout commence.
 
+## Fonctionnalités de l'Application 🎯
+
+### 1. **Authentification**
+
+- **Route** : `POST /api/login`
+  - **Description** : Permet à un utilisateur de se connecter en utilisant ses informations d'authentification (par exemple, email et mot de passe).
+  - **Contrôleur** : `AuthController@login`
+  - **Méthode** : POST
+  - **Détails** : L'utilisateur reçoit un token d'authentification qu'il peut utiliser pour s'authentifier lors de futures requêtes protégées.
+
+- **Route** : `POST /api/logout`
+  - **Description** : Permet à un utilisateur de se déconnecter en invalidant son token d'authentification.
+  - **Contrôleur** : `AuthController@logout`
+  - **Méthode** : POST
+  - **Détails** : Le token d'authentification de l'utilisateur est invalidé pour qu'il ne puisse plus accéder aux routes protégées.
+
+### 2. **Gestion des Événements**
+
+- **Route** : `GET /api/events`
+  - **Description** : Récupère la liste de tous les événements disponibles.
+  - **Contrôleur** : `EventController@index`
+  - **Méthode** : GET
+  - **Détails** : Cette route permet d'afficher tous les événements sans avoir besoin d'être authentifié.
+
+- **Route** : `POST /api/events`
+  - **Description** : Permet de créer un nouvel événement.
+  - **Contrôleur** : `EventController@store`
+  - **Méthode** : POST
+  - **Détails** : Cette route est protégée par l'authentification, et l'utilisateur doit être authentifié pour pouvoir ajouter un événement.
+
+### 3. **Gestion des Tickets**
+
+- **Route** : `GET /api/tickets`
+  - **Description** : Récupère la liste de tous les tickets.
+  - **Contrôleur** : `TicketController@index`
+  - **Méthode** : GET
+  - **Détails** : Cette route permet de récupérer tous les tickets liés à l'utilisateur authentifié.
+
+- **Route** : `POST /api/tickets`
+  - **Description** : Permet à un utilisateur de créer un ticket.
+  - **Contrôleur** : `TicketController@store`
+  - **Méthode** : POST
+  - **Détails** : Cette route permet à l'utilisateur de créer un ticket avec des informations telles que le titre et la description.
+
+- **Route** : `GET /api/tickets/:id`
+  - **Description** : Récupère les informations d'un ticket spécifique.
+  - **Contrôleur** : `TicketController@show`
+  - **Méthode** : GET
+  - **Détails** : Cette route permet à un utilisateur de voir un ticket spécifique en utilisant son identifiant.
+
 ## Exécution de l'API Backend 🏃‍♂️
 
 1. Accédez au dossier `backend` :
